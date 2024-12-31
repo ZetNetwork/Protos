@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package users_v1;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/ZetNetwork/Protos/pkg/users_v1;users_v1";
+
+service UsersV1 {
+  rpc CreateUser(CreateUserRequest) returns (google.protobuf.Empty);
+
+  rpc UpdateUser(UpdateUserRequest) returns (google.protobuf.Empty);
+
+  rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
+
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+message CreateUserRequest {
+  string accessToken = 1;
+  string email = 2;
+  string password = 3;
+  string username = 4;
+  string name = 5;
+  string surname = 6;
+}
+
+message UpdateUserRequest {
+  string accessToken = 1;
+  string email = 2;
+  string password = 3;
+  string username = 4;
+  string name = 5;
+  string surname = 6;
+}
+
+message DeleteUserRequest {
+  string accessToken = 1;
+  string email = 2;
+}
+
+message GetUserRequest {
+  string email = 1;
+}
+
+message GetUserResponse {
+  string email = 2;
+  string password = 3;
+  string username = 4;
+  string name = 5;
+  string surname = 6;
+}

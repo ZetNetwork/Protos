@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package auth_v1;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/ZetNetwork/Protos/pkg/auth_v1;auth_v1";
+
+service AuthV1 {
+  rpc Registration(RegistrationRequest) returns (RegistrationResponse);
+
+  rpc Login(LoginRequest) returns (LoginResponse);
+
+  rpc ValidateToken(ValidateTokenRequest) returns (google.protobuf.Empty);
+
+  rpc GetAccessToken(GetAccessTokenRequest) returns (GetAccessTokenResponse);
+
+  rpc UpdatePassword(UpdatePasswordRequest) returns (google.protobuf.Empty);
+
+  rpc ConfirmEmail(ConfirmEmailRequest) returns (google.protobuf.Empty);
+}
+
+message RegistrationRequest {
+  string email = 1;
+  string password = 2;
+  string username = 3;
+  string name = 4;
+  string surname = 5;
+}
+
+message RegistrationResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+  string userId = 3;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+  string userId = 3;
+}
+
+message ValidateTokenRequest {
+  string accessToken = 1;
+}
+
+message GetAccessTokenRequest {
+  string refreshToken = 1;
+}
+
+message GetAccessTokenResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+}
+
+message UpdatePasswordRequest{
+  string email = 1;
+  string newPassword = 2;
+}
+
+message ConfirmEmailRequest {
+  string email = 1;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package mail_v1;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/ZetNetwork/Protos/pkg/mail_v1;mail_v1";
+
+service MailV1 {
+  rpc Send(SendRequest) returns (google.protobuf.Empty);
+}
+
+message SendRequest {
+  string email = 1;
+  string genLink = 2;
+  string accessToken = 3;
+}
